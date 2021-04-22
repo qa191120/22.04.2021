@@ -1,31 +1,33 @@
 package com.example;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import java.util.ArrayList;
 
 public class MyPositive10mulStack implements IMyPositive10mulStack{
 
+    private ArrayList<Integer> m_items = new ArrayList<>();
+
     @Override
     public void push(int item) {
-        throw new NotImplementedException();
+        m_items.add(0, item);
     }
 
     @Override
     public int pop() {
-        throw new NotImplementedException();
+        throw new RuntimeException();
     }
 
     @Override
     public int peek() {
-        throw new NotImplementedException();
+        throw new RuntimeException();
     }
 
     @Override
     public void clear() {
-        throw new NotImplementedException();
+        throw new RuntimeException();
     }
 
     @Override
     public int count() {
-        throw new NotImplementedException();
+        throw new RuntimeException();
     }
 }
