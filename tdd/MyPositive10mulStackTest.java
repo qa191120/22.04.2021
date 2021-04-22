@@ -9,6 +9,28 @@ import static junit.framework.TestCase.assertEquals;
 
 public class MyPositive10mulStackTest {
 
+    private ArrayList<Integer> get_m_items(MyPositive10mulStack stack) {
+        try {
+            // reflection in order to get the m_items.....
+            ArrayList<Integer> m_items = null; // m_items
+            Field privateStringField = null;
+            privateStringField = MyPositive10mulStack.class.
+                    getDeclaredField("m_items");
+            privateStringField.setAccessible(true);
+            m_items = (ArrayList<Integer>) privateStringField.get(stack);
+            // i got the m_items
+            return m_items;
+        }
+        catch (NoSuchFieldException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     // positive flows
 
     //    void push(int item);
@@ -25,8 +47,12 @@ public class MyPositive10mulStackTest {
         stack.push(10);
 
         // non atomic
-        assertEquals(1, stack.count());
-        assertEquals(10, stack.peek());
+        //assertEquals(1, stack.count());
+        //assertEquals(10, stack.peek());
+        
+        ArrayList<Integer> m_items = get_m_items(stack);
+        assertEquals(1, m_items.size());
+        assertEquals(10, (int)m_items.get(0));
 
         // atomic
         // how to check the push without using the interface!
@@ -34,28 +60,7 @@ public class MyPositive10mulStackTest {
         // stack.m_items -> get(0) == 10
         // reflection
 
-        try {
-            // reflection in order to get the m_items.....
-            ArrayList<Integer> m_items = null; // m_items
-            Field privateStringField = null;
-            privateStringField = MyPositive10mulStack.class.
-                    getDeclaredField("m_items");
-            privateStringField.setAccessible(true);
-            m_items = (ArrayList<Integer>) privateStringField.get(stack);
-            // i got the m_items
-
-            // assert
-            //System.out.println("m_items = " + fieldValue.get(0));
-            assertEquals(m_items.size(), 1);
-            assertEquals((int)m_items.get(0), 10);
-        }
-        catch (NoSuchFieldException e)
-        {
-            e.printStackTrace();
-        }
-         catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+       
     }
 
     // pop
