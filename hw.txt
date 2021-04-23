@@ -1,0 +1,12 @@
+complete the tests for all the positive flows and the negative flows in:
+https://github.com/qa191120/22.04.2021/blob/main/tdd/MyPositive10mulStackTest.java
+
+implement the class in:
+https://github.com/qa191120/22.04.2021/blob/main/tdd/MyPositive10mulStack.java
+if a method throws a test, then add it to the interface
+- do not forget to implement the logic that only positive number which can be divided by 10 without reminder could be
+inserted into the stack. if a different number tries to be inserted- throw an exception
+
+now the tests should work!
+if a test does not work- fix the class code
+
